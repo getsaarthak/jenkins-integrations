@@ -6,13 +6,14 @@ node {
         def dockerHome = tool 'myDocker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
+  
+    stage('prep') {
+        git url: 'https://github.com/wardviaene/gs-gradle.git'
+    }
+  
     stage('welcome') {
         sh 'echo WELCOME'
     }
-  //  stage('prep') {
-  //      git url: 'https://github.com/wardviaene/gs-gradle.git'
-  //  }
-
     stage('build') {
       myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
         sh 'cd complete && /opt/gradle/bin/gradle build'
