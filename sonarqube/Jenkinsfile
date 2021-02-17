@@ -1,7 +1,7 @@
 node {
     
     def myGradleContainer = docker.image('gradle:jdk8-alpine')
-    myGradleContainer.pull()
+      myGradleContainer.pull()
     
     stage('Initialize'){
         def dockerHome = tool 'myDocker'
