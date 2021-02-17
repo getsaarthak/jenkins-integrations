@@ -6,7 +6,9 @@ node {
         def dockerHome = tool 'myDocker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
-
+    stage('welcome') {
+        sh 'echo WELCOME'
+    }
     stage('prep') {
         git url: 'https://github.com/wardviaene/gs-gradle.git'
     }
