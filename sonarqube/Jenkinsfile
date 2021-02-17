@@ -1,6 +1,12 @@
 node {
+    
     def myGradleContainer = docker.image('gradle:jdk8-alpine')
     myGradleContainer.pull()
+    
+    stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
 
     stage('prep') {
         git url: 'https://github.com/wardviaene/gs-gradle.git'
