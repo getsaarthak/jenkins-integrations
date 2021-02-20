@@ -1,5 +1,5 @@
 node {
-    def server = Artifactory.server('gradle')
+    def server = Artifactory.server('http://172.100.20.30:8082/artifactory/gradle/')
     def rtGradle = Artifactory.newGradleBuild()
     def buildInfo = Artifactory.newBuildInfo()
     stage 'Build'
@@ -7,8 +7,8 @@ node {
 
     stage 'Artifactory configuration'
         rtGradle.tool = 'gradle' // Tool name from Jenkins configuration
-        rtGradle.deployer repo:'gradle-dev-local',  server: server
-        rtGradle.resolver repo:'gradle-dev', server: server
+        rtGradle.deployer repo:'gradle-repo1-gradle-dev-local',  server: server
+        rtGradle.resolver repo:'gradle-repo1-gradle-dev-local', server: server
 
         stage('Config Build Info') {
             buildInfo.env.capture = true
